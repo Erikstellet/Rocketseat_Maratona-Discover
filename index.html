@@ -49,6 +49,13 @@
                     <p id="totalDisplay">$  0,00</p>
                 </div>
         </section>
+
+        <section id="graphics">
+        <div class="card">
+            <canvas id="myChart" width="100" height="40"></canvas>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        </div>
+        </section>
         
         <section id="transaction">
             <h2 class="sr-only">Transações</h2>
@@ -114,6 +121,7 @@
 
     <footer>dev.finance$</footer>
 
-    <script src="./scripts.js"></script>
+    <script src="./node_modules/chart.js/dist/Chart.js"></script>
+    <script src="./scripts.js"></script> 
 </body>
 </html>

@@ -238,7 +238,8 @@ const Form =
             const transaction = Form.formatValues(); 
             Transaction.add(transaction) 
             Form.clearFields();
-            Modal.close();    
+            Modal.close();
+            chart.update()     
         }
         catch(error)
         {
@@ -264,5 +265,88 @@ const App =
     }
 }
 
+//console.log(chart.data.labels)
+
 App.init()
 
+graphicsDate = Transaction.all.map(function(nome)
+{
+    let date = nome.date.split("/")
+    let d = date[1][0] + date[1][1]
+
+    mes = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+           'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+           
+    nums = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+           'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+
+    for(let i = 0; i < date.length; i++)
+    {
+        console.log(date.length)
+        
+        if (d == 01)
+        {
+            return mes[0]
+        }
+        else if (d == 02)
+        {  
+            return mes[1]
+        }
+        else if (d == 03)
+        {    
+            return mes[2]
+        }
+        else if (d == 07)
+        {    
+            return mes[6]
+        }
+    }
+})
+
+/*============================ Chart.js ===============================*/
+
+const ctx = document.getElementById('myChart').getContext('2d');
+
+const chart = new Chart(ctx,
+{
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data:
+    {
+        labels: [],
+        datasets: 
+        [
+            {
+                label: 'My First dataset',
+                borderColor: '#E92929',
+                data: [5, -10 , 15]
+            },
+            {
+                label: 'My First dataset',
+                borderColor: '#49AA26',
+                data: [10, 50 , 30]
+            },
+        ]
+    },
+
+    // Configuration options go here
+    options: {}
+});
+
+arr = [];
+arr.push(graphicsDate)
+
+
+let sizeData = chart.data.datasets[0].data.length
+
+chart.data.datasets[0].data[sizeData] = Math.random() * 100
+
+for(let i = 0; i < arr.length; i++)
+{
+    chart.data.labels = arr[i]
+}
+
+chart.data.labels.sort();
+chart.update() 
