@@ -1,3 +1,39 @@
+/*============================ DarkTheme ===============================*/
+
+const html = document.querySelector("html")
+const checkbox = document.querySelector("input[name=theme]")
+
+const getStyle = (element, style) => window.getComputedStyle(element)
+                                           .getPropertyValue(style);
+
+const initialColors = 
+{
+    darkGreen: getStyle(html, "--dark-green"),
+    background: getStyle(html, "--background"),
+    white: getStyle(html, "--white"),
+}
+
+const darkMode = 
+{
+    darkGreen: "#7e7e7e",
+    background: "#333333",
+    white: "#f0f3f5",
+}
+
+const transformKey = key => "--" + key.replace(/([A-Z])/, "-$1").toLowerCase()
+
+const changeColors = colors => 
+{
+    Object.keys(colors).map(key => html.style.setProperty(transformKey(key), colors[key]))
+}
+
+checkbox.addEventListener("change", ({target}) => 
+{
+    target.checked ? changeColors(darkMode) : changeColors(initialColors)
+})
+
+/*============================ Modal ===============================*/
+
 const Modal = 
 {
     open()
@@ -128,7 +164,7 @@ const Utils =
     formatAmount(value)
     {
         value = Number(value.replace(/\,\./g, "")) * 100;
-        return value   
+        return Math.round(value)   
     },
     formatDate(date)
     {
