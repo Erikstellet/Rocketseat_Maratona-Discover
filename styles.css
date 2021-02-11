@@ -148,6 +148,7 @@ label
     position: relative;
     background: var(--white);
     margin-right: 3rem;
+    margin-left: -5rem;
 }
 
 label::after{

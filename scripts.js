@@ -253,10 +253,10 @@ const App =
     init()
     {
         Transaction.all.forEach(DOM.addTransaction)
-
         DOM.updateBalance()
-
         Storage.set(Transaction.all)
+        chart.data.labels.sort();
+        chart.update() 
     },
     reload()
     {
@@ -267,23 +267,18 @@ const App =
 
 //console.log(chart.data.labels)
 
-App.init()
-
 graphicsDate = Transaction.all.map(function(nome)
 {
     let date = nome.date.split("/")
     let d = date[1][0] + date[1][1]
 
-    mes = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-           'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
-           
-    nums = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-           'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+    console.log(d)
+
+    mes = ['01', '02', '03', '04', '05', '06',
+           '07', '08', '09', '10', '11', '12'];
 
     for(let i = 0; i < date.length; i++)
-    {
-        console.log(date.length)
-        
+    {   
         if (d == 01)
         {
             return mes[0]
@@ -292,15 +287,21 @@ graphicsDate = Transaction.all.map(function(nome)
         {  
             return mes[1]
         }
-        else if (d == 03)
-        {    
-            return mes[2]
-        }
-        else if (d == 07)
-        {    
-            return mes[6]
-        }
     }
+})
+
+graphicsAmount = Transaction.all.map(function(amount)
+{
+    let value = amount.amount;
+
+    const signal = Number(value) < 0 ? "-" : "";
+
+    value = String(value).replace(/\D/g, "");
+    value = Number(value) / 100;
+
+    console.log(value)
+
+    return signal + value;
 })
 
 /*============================ Chart.js ===============================*/
@@ -309,44 +310,59 @@ const ctx = document.getElementById('myChart').getContext('2d');
 
 const chart = new Chart(ctx,
 {
-    // The type of chart we want to create
     type: 'line',
 
-    // The data for our dataset
     data:
     {
         labels: [],
         datasets: 
         [
             {
-                label: 'My First dataset',
+                label: 'Saídas',
                 borderColor: '#E92929',
-                data: [5, -10 , 15]
+                data: []
             },
             {
-                label: 'My First dataset',
+                label: 'Entradas',
                 borderColor: '#49AA26',
-                data: [10, 50 , 30]
+                data: []
             },
         ]
     },
 
-    // Configuration options go here
     options: {}
 });
 
-arr = [];
-arr.push(graphicsDate)
+vUm = [];
+vDois = [];
 
+vUm.push(graphicsDate)
+vUm.sort()
+vDois.push(graphicsAmount)
 
-let sizeData = chart.data.datasets[0].data.length
+console.log(vUm)
+console.log(vDois)
 
-chart.data.datasets[0].data[sizeData] = Math.random() * 100
-
-for(let i = 0; i < arr.length; i++)
+for(let i = 0; i < vUm.length; i++)
 {
-    chart.data.labels = arr[i]
+    if(vUm[i] != chart.data.labels)
+    {
+        chart.data.labels = vUm[i]
+
+        console.log(chart.data.labels)
+    } 
 }
 
-chart.data.labels.sort();
-chart.update() 
+for(let i = 0; i < vDois.length; i++)
+{
+    if(vDois[i] > 0)
+    {
+        chart.data.datasets[1].data.push(vDois[i])
+    }
+    else
+    {
+        chart.data.datasets[0].data.push(vDois[i])
+    }
+}
+
+App.init()
