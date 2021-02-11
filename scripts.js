@@ -272,8 +272,6 @@ graphicsDate = Transaction.all.map(function(nome)
     let date = nome.date.split("/")
     let d = date[1][0] + date[1][1]
 
-    console.log(d)
-
     mes = ['01', '02', '03', '04', '05', '06',
            '07', '08', '09', '10', '11', '12'];
 
@@ -299,12 +297,19 @@ graphicsAmount = Transaction.all.map(function(amount)
     value = String(value).replace(/\D/g, "");
     value = Number(value) / 100;
 
-    console.log(value)
-
     return signal + value;
 })
 
 /*============================ Chart.js ===============================*/
+const pollData = []
+
+for(let i = 0; i < Transaction.all.length; i++)
+{
+    pollData.push(Transaction.all[i])
+}
+
+console.log(Transaction.all)
+console.log(pollData)
 
 const ctx = document.getElementById('myChart').getContext('2d');
 
@@ -314,18 +319,22 @@ const chart = new Chart(ctx,
 
     data:
     {
-        labels: [],
+        labels: pollData.map(function(pollDate) 
+        {
+            a =  pollDate.date.split("/")
+            return  a[1]
+        }),
         datasets: 
         [
             {
                 label: 'Saídas',
                 borderColor: '#E92929',
-                data: []
+                data: pollData.map(pollAmount => Number(pollAmount.amount / 100)),
             },
             {
                 label: 'Entradas',
                 borderColor: '#49AA26',
-                data: []
+                data: pollData.map(pollAmount => Number(pollAmount.amount / 100))
             },
         ]
     },
@@ -333,36 +342,6 @@ const chart = new Chart(ctx,
     options: {}
 });
 
-vUm = [];
-vDois = [];
-
-vUm.push(graphicsDate)
-vUm.sort()
-vDois.push(graphicsAmount)
-
-console.log(vUm)
-console.log(vDois)
-
-for(let i = 0; i < vUm.length; i++)
-{
-    if(vUm[i] != chart.data.labels)
-    {
-        chart.data.labels = vUm[i]
-
-        console.log(chart.data.labels)
-    } 
-}
-
-for(let i = 0; i < vDois.length; i++)
-{
-    if(vDois[i] > 0)
-    {
-        chart.data.datasets[1].data.push(vDois[i])
-    }
-    else
-    {
-        chart.data.datasets[0].data.push(vDois[i])
-    }
-}
+console.log(chart.data.labels.sort())
 
 App.init()
