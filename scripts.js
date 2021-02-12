@@ -1,4 +1,4 @@
-/*============================ DarkTheme ===============================*/
+/*===================================== DarkTheme ========================================*/
 
 const html = document.querySelector("html")
 const checkbox = document.querySelector("input[name=theme]")
@@ -32,7 +32,7 @@ checkbox.addEventListener("change", ({target}) =>
     target.checked ? changeColors(darkMode) : changeColors(initialColors)
 })
 
-/*============================ Modal ===============================*/
+/*======================================== Modal ========================================*/
 
 const Modal = 
 {
@@ -255,7 +255,6 @@ const App =
         Transaction.all.forEach(DOM.addTransaction)
         DOM.updateBalance()
         Storage.set(Transaction.all)
-        chart.data.labels.sort();
         chart.update() 
     },
     reload()
@@ -265,42 +264,7 @@ const App =
     }
 }
 
-//console.log(chart.data.labels)
-
-graphicsDate = Transaction.all.map(function(nome)
-{
-    let date = nome.date.split("/")
-    let d = date[1][0] + date[1][1]
-
-    mes = ['01', '02', '03', '04', '05', '06',
-           '07', '08', '09', '10', '11', '12'];
-
-    for(let i = 0; i < date.length; i++)
-    {   
-        if (d == 01)
-        {
-            return mes[0]
-        }
-        else if (d == 02)
-        {  
-            return mes[1]
-        }
-    }
-})
-
-graphicsAmount = Transaction.all.map(function(amount)
-{
-    let value = amount.amount;
-
-    const signal = Number(value) < 0 ? "-" : "";
-
-    value = String(value).replace(/\D/g, "");
-    value = Number(value) / 100;
-
-    return signal + value;
-})
-
-/*============================ Chart.js ===============================*/
+/*====================================== Chart.js ========================================*/
 const pollData = []
 
 for(let i = 0; i < Transaction.all.length; i++)
@@ -308,40 +272,48 @@ for(let i = 0; i < Transaction.all.length; i++)
     pollData.push(Transaction.all[i])
 }
 
-console.log(Transaction.all)
-console.log(pollData)
-
 const ctx = document.getElementById('myChart').getContext('2d');
 
 const chart = new Chart(ctx,
 {
-    type: 'line',
+    type: 'bar',
 
     data:
     {
-        labels: pollData.map(function(pollDate) 
+        labels: pollData.map(pollDate => 
         {
-            a =  pollDate.date.split("/")
-            return  a[1]
+            return  pollDate.date
         }),
         datasets: 
         [
             {
                 label: 'Saídas',
-                borderColor: '#E92929',
-                data: pollData.map(pollAmount => Number(pollAmount.amount / 100)),
+                data: pollData.map(pollAmount => 
+                {
+                    b = Number(pollAmount.amount / 100)
+                    if(b < 0)
+                    {
+                        return  b
+                    }
+                }),
+                backgroundColor: '#E92929',
             },
             {
                 label: 'Entradas',
-                borderColor: '#49AA26',
-                data: pollData.map(pollAmount => Number(pollAmount.amount / 100))
+                data: pollData.map(pollAmount => 
+                {
+                    b = Number(pollAmount.amount / 100)
+                    if(b > 0)
+                    {
+                        return  b
+                    }
+                }),
+                backgroundColor: '#49AA26',
             },
         ]
     },
 
-    options: {}
+    options: {  }
 });
-
-console.log(chart.data.labels.sort())
 
 App.init()

@@ -19,7 +19,7 @@
 
 html
 {
-    font-size: 93.75%;      /* 15px*/
+    font-size: 100%;          /* 15px*/
 }
 
 body
@@ -113,8 +113,7 @@ button:hover
     color: var(--white);
     background-color: var(--red);
 }
-
-/*============= HEADER =============*/
+/*===================================  HEADER ================================*/
 header
 {
     background: var(--dark-green);
@@ -127,8 +126,7 @@ header
     color: var(--white);
     font-weight: 80;
 }
-
-/*============= DARK-THEME =============*/
+/*=================================== DARK-THEME ================================*/
 
 input[type=checkbox]
 {
@@ -147,7 +145,7 @@ label
     border-radius: 100px;
     position: relative;
     background: var(--white);
-    margin-right: 3rem;
+    margin-right: 2rem;
     margin-left: -5rem;
 }
 
@@ -178,7 +176,7 @@ label:active:after {
     width: 45px;
 }
 
-/*============= BALANCE =============*/
+/*===================================== BALANCE ==================================*/
 #balance
 {
     margin-top: -2rem;
@@ -189,7 +187,7 @@ label:active:after {
     color: var(--white);
     margin-top: -8rem;
 }
-/*============= CARDS =============*/
+/*===================================== CARDS ==================================*/
 .card
 {
     background: var(--white);
@@ -223,7 +221,7 @@ label:active:after {
     color: var(--white);
 }
 
-/*============= TABLE =============*/
+/*===================================== TABLE ==================================*/
 #transaction
 {
     margin-top: 3rem;
@@ -293,7 +291,7 @@ td.expense
     color: var(--red);
 }
 
-/*============= MODAL =============*/
+/*===================================== MODAL ==================================*/
 
 .modal-overlay
 {
@@ -382,19 +380,19 @@ input
 /*============= FOOTER =============*/
 footer
 {
-    font-size: 16px;
+    font-size: 18px;
     margin-top: 5rem;
     text-align: center;
     padding: 4rem 0 2rem;
     color: var(--light-green);
 }
 
-/*========== RESPONSIVE ==========*/
+/*============================ RESPONSIVE ============================*/
 @media (min-width: 800px)
 {
     html
     {
-        font-size: 87.5%;       /* 14px */
+        font-size: 87.5%;           /* 14px */
     }
 
     #balance 
@@ -402,6 +400,12 @@ footer
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 1.5rem;
+    }
 
+    .graphics
+    {
+        width: 80%; 
+        height: 15%;
     }
 }
+
