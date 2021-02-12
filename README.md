@@ -23,7 +23,9 @@ A aplicação consiste em uma interface web para controle de finanças, onde os 
 - Chart.js
 
 ### instalar dependências
-npm install chart.js --save
+```
+#  npm install chart.js --save
+```
 
 ### Autor
 Erik Stellet Brito dos Santos
