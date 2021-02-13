@@ -341,7 +341,6 @@ input
 {
     border: none;
     border-radius: 0.2rem;
-
     padding: 0.8rem;
     width: 100%;
 }
@@ -360,9 +359,10 @@ input
     margin-top: 0.8rem;
 }
 
-.input-group small
+ small
 {
-    opacity: 0.5;
+    font-size: 14px;
+    color: var(--light-green);
 }
 
 .input-group.actions
@@ -376,6 +376,11 @@ input
 .input-group.actions button
 {
     width: 48%;
+}
+
+.help
+{
+    color: 
 }
 /*============= FOOTER =============*/
 footer

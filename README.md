@@ -9,12 +9,16 @@ Dev.finance$ é uma front-end web construída durante a 1ª edição da **Marato
 A aplicação consiste em uma interface web para controle de finanças, onde os dados são coletados e listados na web, além disso foram implementados duas funções como exercício.
 
 ### Layout Responsivo Mobile
-![Web 1](https://github.com/Erikstellet/assets/mobile1.png)
-![Web 2](https://github.com/Erikstellet/assets/mobile2.png)
+![Web 1](./assets/mobile-1.jpg)
+![Web 2](./assets/mobile-2.JPG)
 
 ### Layout Padrão Web
-![Web 1](https://github.com/Erikstellet/assets/web1.png)
-![Web 2](https://github.com/Erikstellet/assets/web2.png)
+![Web 1](./assets/web-1.jpg)
+
+![Web 2](./assets/web-2.jpg)
+
+![Web 3](./assets/web-2-form.jpg)
+
 
 ### Tecnologias utilizadas
 - JavaScript
