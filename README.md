@@ -10,7 +10,7 @@ A aplicação consiste em uma interface web para controle de finanças, onde os 
 
 ### Layout Responsivo Mobile
 ![Web 1](./assets/mobile-1.jpg)
-![Web 2](./assets/mobile-2.JPG)
+![Web 2](./assets/mobile-2.jpg)
 
 ### Layout Padrão Web
 ![Web 1](./assets/web-1.jpg)
