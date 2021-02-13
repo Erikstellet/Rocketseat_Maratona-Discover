@@ -6,7 +6,7 @@
 ### Sobre o Projeto
 Dev.finance$ é uma front-end web construída durante a 1ª edição da **Maratona Discover**, um evento realizado pela [Rocketseat](https://rocketseat.com.br/).
 
-A aplicação consiste em uma interface web para controle de finanças, onde os dados são coletados e listados na web, além disso foram implementados duas funções como exercício.
+A aplicação consiste em uma interface web para controle de finanças, onde os dados são coletados e listados na web, além disso foi implementado duas funções como exercício: adicionar gráficos e dark mode.
 
 ### Layout Responsivo Mobile
 ![Web 1](./assets/mobile-1.jpg)
